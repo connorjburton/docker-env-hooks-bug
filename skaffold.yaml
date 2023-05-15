@@ -1,0 +1,14 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+build:
+  artifacts:
+    - image: test-image
+      context: .
+      docker:
+        buildArgs:
+          HELLO: "{{ .HELLO }}"
+      hooks:
+        before:
+          - command:
+              - bash
+              - source-env.sh
